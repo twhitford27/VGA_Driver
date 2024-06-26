@@ -23,7 +23,7 @@
 module top(
         input CLK100MHZ,
         input rst_btn,
-
+        input [2:0] btn,
 
         output VGA_HS,
         output VGA_VS,
@@ -36,10 +36,24 @@ module top(
     wire enable_V;
     wire [15:0] H_Count;
     wire [15:0] V_Count;
+    
+    reg [3:0] VGA_R_REG;
+    reg [3:0] VGA_B_REG;
+    reg [3:0] VGA_G_REG;
+    
+    localparam PATTERN_0 = 3'b000;
+    localparam PATTERN_1 = 3'b001;
+    localparam PATTERN_2 = 3'b010;
+    localparam PATTERN_3 = 3'b011;
+
+    wire [3:0] Pattern_Red[0:3];
+    wire [3:0] Pattern_Green[0:3];
+    wire [3:0] Pattern_Blue[0:3];
+
 
     assign rst = rst_btn;
 
-
+    
     clk_divider VGA_Clock(
         .clk(CLK100MHZ),
         .out(clk_25M),
@@ -61,6 +75,61 @@ module top(
 
     assign VGA_HS = (H_Count < 96) ? 1'b1:1'b0;
     assign VGA_VS = (V_Count < 2) ? 1'b1:1'b0;
+
+    //pattern_0
+    assign Pattern_Red[0] = (H_Count < 784 && H_Count > 143 && V_Count < 515 && V_Count >34) ? 4'hF:4'h0;
+    assign Pattern_Green[0] = (H_Count < 784 && H_Count > 143 && V_Count < 515 && V_Count >34) ? 4'hF:4'h0;
+    assign Pattern_Blue[0] = (H_Count < 784 && H_Count > 143 && V_Count < 515 && V_Count >34) ? 4'hF:4'h0;
+
+    //pattern_1
+    assign Pattern_Red[1] = (H_Count < 784 && H_Count > 143 && V_Count < 515 && V_Count >34) ? 4'hF:4'h0;
+    assign Pattern_Green[1] = 4'h0;
+    assign Pattern_Blue[1] = 4'h0;
+
+    //pattern_2
+    assign Pattern_Red[2] = 4'h0; 
+    assign Pattern_Green[2] = (H_Count < 784 && H_Count > 143 && V_Count < 515 && V_Count >34) ? 4'hF:4'h0;
+    assign Pattern_Blue[2] = 4'h0;
+
+    //pattern3
+    assign Pattern_Red[2] = 4'h0; 
+    assign Pattern_Green[2] = 4'h0;
+    assign Pattern_Blue[2] = (H_Count < 784 && H_Count > 143 && V_Count < 515 && V_Count >34) ? 4'hF:4'h0;
+
+    // always @(posedge clk_25M) begin
+    //     case(btn)
+
+    //         PATTERN_0:begin
+    //             VGA_R <= Pattern_Red[0];
+    //             VGA_G <= Pattern_Green[0];
+    //             VGA_B <= Pattern_Blue[0];
+    //         end
+    //         PATTERN_1:begin
+    //             VGA_R <= Pattern_Red[1];
+    //             VGA_G <= Pattern_Green[1];
+    //             VGA_B <= Pattern_Blue[1];
+    //         end
+    //         PATTERN_2:begin
+    //             VGA_R <= Pattern_Red[2];
+    //             VGA_G <= Pattern_Green[2];
+    //             VGA_B <= Pattern_Blue[2];
+    //         end
+    //         PATTERN_3:begin
+    //             VGA_R <= Pattern_Red[3];
+    //             VGA_G <= Pattern_Green[3];
+    //             VGA_B <= Pattern_Blue[3];
+    //         end
+
+    //         default:begin
+    //             VGA_R <= Pattern_Red[0];
+    //             VGA_G <= Pattern_Green[0];
+    //             VGA_B <= Pattern_Blue[0];
+    //         end
+    //     endcase
+        
+    // end
+
+
 
     assign VGA_R = (H_Count < 784 && H_Count > 143 && V_Count < 515 && V_Count >34) ? 4'hF:4'h0;
     assign VGA_G = (H_Count < 784  && H_Count > 143 && V_Count < 515 && V_Count >34) ? 4'hF:4'h0;

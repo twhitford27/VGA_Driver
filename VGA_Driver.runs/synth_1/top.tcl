@@ -70,7 +70,8 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_msg_config -id {Common 17-41} -limit 10000000
+set_param chipscope.maxJobs 1
+set_param xicom.use_bs_reader 1
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xc7s25csga324-1
 
@@ -106,6 +107,8 @@ read_xdc D:/FPGA_Projects/VGA_Driver/VGA_Driver.srcs/constrs_1/imports/digilent-
 set_property used_in_implementation false [get_files D:/FPGA_Projects/VGA_Driver/VGA_Driver.srcs/constrs_1/imports/digilent-xdc-master/Arty-S7-25-Master.xdc]
 
 set_param ips.enableIPCacheLiteLoad 1
+
+read_checkpoint -auto_incremental -incremental D:/FPGA_Projects/VGA_Driver/VGA_Driver.srcs/utils_1/imports/synth_1/top.dcp
 close [open __synthesis_is_running__ w]
 
 OPTRACE "synth_design" START { }
