@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Thu Jun 27 00:29:52 2024
+| Date         : Thu Jun 27 01:18:39 2024
 | Host         : DESKTOP-VCL2FF6 running 64-bit major release  (build 9200)
 | Command      : report_utilization -file top_utilization_synth.rpt -pb top_utilization_synth.pb
 | Design       : top
@@ -31,11 +31,11 @@ Table of Contents
 +-------------------------+------+-------+------------+-----------+-------+
 |        Site Type        | Used | Fixed | Prohibited | Available | Util% |
 +-------------------------+------+-------+------------+-----------+-------+
-| Slice LUTs*             |   33 |     0 |          0 |     14600 |  0.23 |
-|   LUT as Logic          |   33 |     0 |          0 |     14600 |  0.23 |
+| Slice LUTs*             |   38 |     0 |          0 |     14600 |  0.26 |
+|   LUT as Logic          |   38 |     0 |          0 |     14600 |  0.26 |
 |   LUT as Memory         |    0 |     0 |          0 |      5000 |  0.00 |
-| Slice Registers         |   25 |     0 |          0 |     29200 |  0.09 |
-|   Register as Flip Flop |   25 |     0 |          0 |     29200 |  0.09 |
+| Slice Registers         |   28 |     0 |          0 |     29200 |  0.10 |
+|   Register as Flip Flop |   28 |     0 |          0 |     29200 |  0.10 |
 |   Register as Latch     |    0 |     0 |          0 |     29200 |  0.00 |
 | F7 Muxes                |    0 |     0 |          0 |      7300 |  0.00 |
 | F8 Muxes                |    0 |     0 |          0 |      3650 |  0.00 |
@@ -59,7 +59,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 | 0     |          Yes |           - |          Set |
 | 4     |          Yes |           - |        Reset |
 | 0     |          Yes |         Set |            - |
-| 21    |          Yes |       Reset |            - |
+| 24    |          Yes |       Reset |            - |
 +-------+--------------+-------------+--------------+
 
 
@@ -92,7 +92,7 @@ Warning! LUT value is adjusted to account for LUT combining.
 +-----------------------------+------+-------+------------+-----------+-------+
 |          Site Type          | Used | Fixed | Prohibited | Available | Util% |
 +-----------------------------+------+-------+------------+-----------+-------+
-| Bonded IOB                  |   16 |     0 |          0 |       150 | 10.67 |
+| Bonded IOB                  |   19 |     0 |          0 |       150 | 12.67 |
 | Bonded IPADs                |    0 |     0 |          0 |         2 |  0.00 |
 | PHY_CONTROL                 |    0 |     0 |          0 |         3 |  0.00 |
 | PHASER_REF                  |    0 |     0 |          0 |         3 |  0.00 |
@@ -147,16 +147,16 @@ Warning! LUT value is adjusted to account for LUT combining.
 +----------+------+---------------------+
 | Ref Name | Used | Functional Category |
 +----------+------+---------------------+
-| FDRE     |   21 |        Flop & Latch |
-| LUT6     |   16 |                 LUT |
+| FDRE     |   24 |        Flop & Latch |
+| LUT6     |   17 |                 LUT |
 | OBUF     |   14 |                  IO |
-| LUT3     |    8 |                 LUT |
-| LUT5     |    7 |                 LUT |
-| LUT4     |    6 |                 LUT |
-| LUT2     |    5 |                 LUT |
+| LUT2     |    9 |                 LUT |
+| LUT5     |    8 |                 LUT |
+| LUT4     |    7 |                 LUT |
+| LUT3     |    7 |                 LUT |
+| IBUF     |    5 |                  IO |
 | FDCE     |    4 |        Flop & Latch |
 | LUT1     |    2 |                 LUT |
-| IBUF     |    2 |                  IO |
 | BUFG     |    1 |               Clock |
 +----------+------+---------------------+
 

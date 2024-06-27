@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 ---------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version : Vivado v.2023.2 (win64) Build 4029153 Fri Oct 13 20:14:34 MDT 2023
-| Date         : Thu Jun 27 00:31:49 2024
+| Date         : Thu Jun 27 01:19:34 2024
 | Host         : DESKTOP-VCL2FF6 running 64-bit major release  (build 9200)
 | Command      : report_control_sets -verbose -file top_control_sets_placed.rpt
 | Design       : top
@@ -23,11 +23,11 @@ Table of Contents
 +----------------------------------------------------------+-------+
 |                          Status                          | Count |
 +----------------------------------------------------------+-------+
-| Total control sets                                       |     5 |
-|    Minimum number of control sets                        |     5 |
+| Total control sets                                       |     7 |
+|    Minimum number of control sets                        |     7 |
 |    Addition due to synthesis replication                 |     0 |
 |    Addition due to physical synthesis replication        |     0 |
-| Unused register locations in slices containing registers |    31 |
+| Unused register locations in slices containing registers |    35 |
 +----------------------------------------------------------+-------+
 * Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
 ** Run report_qor_suggestions for automated merging and remapping suggestions
@@ -39,12 +39,12 @@ Table of Contents
 +--------------------+-------+
 |       Fanout       | Count |
 +--------------------+-------+
-| Total control sets |     5 |
-| >= 0 to < 4        |     2 |
-| >= 4 to < 6        |     1 |
+| Total control sets |     7 |
+| >= 0 to < 4        |     1 |
+| >= 4 to < 6        |     4 |
 | >= 6 to < 8        |     0 |
-| >= 8 to < 10       |     1 |
-| >= 10 to < 12      |     1 |
+| >= 8 to < 10       |     0 |
+| >= 10 to < 12      |     2 |
 | >= 12 to < 14      |     0 |
 | >= 14 to < 16      |     0 |
 | >= 16              |     0 |
@@ -60,24 +60,26 @@ Table of Contents
 +--------------+-----------------------+------------------------+-----------------+--------------+
 | No           | No                    | No                     |               1 |            1 |
 | No           | No                    | Yes                    |               4 |            1 |
-| No           | Yes                   | No                     |               1 |            1 |
+| No           | Yes                   | No                     |              12 |            3 |
 | Yes          | No                    | No                     |              10 |            4 |
 | Yes          | No                    | Yes                    |               0 |            0 |
-| Yes          | Yes                   | No                     |               9 |            2 |
+| Yes          | Yes                   | No                     |              10 |            3 |
 +--------------+-----------------------+------------------------+-----------------+--------------+
 
 
 4. Detailed Control Set Information
 -----------------------------------
 
-+----------------------+--------------------+------------------+------------------+----------------+--------------+
-|     Clock Signal     |    Enable Signal   | Set/Reset Signal | Slice Load Count | Bel Load Count | Bels / Slice |
-+----------------------+--------------------+------------------+------------------+----------------+--------------+
-|  VGA_Clock/out       |                    |                  |                1 |              1 |         1.00 |
-|  VGA_Clock/out       |                    | VGA_Horiz/clear  |                1 |              1 |         1.00 |
-|  CLK100MHZ_IBUF_BUFG |                    | rst_btn_IBUF     |                1 |              4 |         4.00 |
-|  VGA_Clock/out       | VGA_Horiz/sel      | VGA_Horiz/clear  |                2 |              9 |         4.50 |
-|  VGA_Clock/out       | VGA_Horiz/enable_V |                  |                4 |             10 |         2.50 |
-+----------------------+--------------------+------------------+------------------+----------------+--------------+
++----------------------+--------------------+----------------------+------------------+----------------+--------------+
+|     Clock Signal     |    Enable Signal   |   Set/Reset Signal   | Slice Load Count | Bel Load Count | Bels / Slice |
++----------------------+--------------------+----------------------+------------------+----------------+--------------+
+|  VGA_Clock/CLK       |                    |                      |                1 |              1 |         1.00 |
+|  CLK100MHZ_IBUF_BUFG |                    | rst_btn_IBUF         |                1 |              4 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG |                    | VGA_R_REG[3]_i_1_n_0 |                1 |              4 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG |                    | VGA_B_REG[3]_i_1_n_0 |                1 |              4 |         4.00 |
+|  CLK100MHZ_IBUF_BUFG |                    | btn_IBUF[0]          |                1 |              4 |         4.00 |
+|  VGA_Clock/CLK       | VGA_Horiz/enable_V |                      |                4 |             10 |         2.50 |
+|  VGA_Clock/CLK       | VGA_Horiz/sel      | VGA_Horiz/clear      |                3 |             10 |         3.33 |
++----------------------+--------------------+----------------------+------------------+----------------+--------------+
 
 
